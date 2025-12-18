@@ -1,0 +1,47 @@
+.webhook-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 2s infinite;
+}
+
+.webhook-status.checking .status-dot {
+  background: #ffc107;
+}
+
+.webhook-status.configured .status-dot {
+  background: #51cf66;
+  animation: none;
+}
+
+.webhook-status.not-configured .status-dot {
+  background: #ff6b6b;
+}
+
+.webhook-status.error .status-dot {
+  background: #ff6b6b;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
