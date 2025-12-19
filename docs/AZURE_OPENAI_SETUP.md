@@ -8,12 +8,12 @@
 
 ## المعرفات المطلوبة
 
-```env
+\`\`\`env
 AZURE_OPENAI_KEY=B9miWBdymm8e4BUFoxDMqs4UB7luinaBG7c22i5uNwOGn5zNaNE3JQQJ99BKACYeBjFXJ3w3AAABACOG8ZhR
 AZURE_OPENAI_DEPLOYMENT=AzaBot
 AZURE_OPENAI_ENDPOINT=https://azabotai.openai.azure.com
 AZURE_OPENAI_KEY2=B4CcYQDenUwAd4FTSJg0TRIL4yDYP2qRoHS0EHsF8Wwe4lkfJN0sJQQJ99BKACYeBjFXJ3w3AAABACOGlr31
-```
+\`\`\`
 
 ---
 
@@ -46,24 +46,24 @@ AZURE_OPENAI_KEY2=B4CcYQDenUwAd4FTSJg0TRIL4yDYP2qRoHS0EHsF8Wwe4lkfJN0sJQQJ99BKAC
 ## كيف يعمل
 
 ### 1. استقبال الرسالة
-```
+\`\`\`
 عميل → WhatsApp → Webhook → AI Agent
-```
+\`\`\`
 
 ### 2. معالجة الرسالة
-```javascript
+\`\`\`javascript
 // AI Agent يقوم بـ:
 1. فهم سياق المحادثة
 2. تحديد نوع الطلب
 3. استخراج المعلومات (نوع الخدمة، الطوارئ)
 4. توليد رد مناسب
 5. إنشاء طلب صيانة إذا لزم
-```
+\`\`\`
 
 ### 3. إرسال الرد
-```
+\`\`\`
 AI Agent → WhatsApp API → عميل
-```
+\`\`\`
 
 ---
 
@@ -72,12 +72,12 @@ AI Agent → WhatsApp API → عميل
 ### مثال 1: طلب صيانة سباكة
 
 **العميل:**
-```
+\`\`\`
 السلام عليكم، عندي تسريب ماء في المطبخ ضروري
-```
+\`\`\`
 
 **AI Agent:**
-```
+\`\`\`
 وعليكم السلام ورحمة الله وبركاته 👋
 
 تم استلام طلبكم بخصوص تسريب المياه في المطبخ.
@@ -90,17 +90,17 @@ AI Agent → WhatsApp API → عميل
 سيتم التواصل معكم من قبل الفني المختص خلال 30 دقيقة.
 
 هل هناك تفاصيل إضافية تود إضافتها؟
-```
+\`\`\`
 
 ### مثال 2: استفسار عام
 
 **العميل:**
-```
+\`\`\`
 كم سعر صيانة المكيف؟
-```
+\`\`\`
 
 **AI Agent:**
-```
+\`\`\`
 أهلاً بك! 😊
 
 أسعار صيانة المكيفات:
@@ -110,21 +110,21 @@ AI Agent → WhatsApp API → عميل
 • صيانة كاملة: 400 ريال
 
 هل تريد حجز موعد لصيانة المكيف؟
-```
+\`\`\`
 
 ### مثال 3: تحويل للموظف
 
 **العميل:**
-```
+\`\`\`
 ابغى اتكلم مع موظف
-```
+\`\`\`
 
 **AI Agent:**
-```
+\`\`\`
 حاضر، سأحولك لأحد موظفي خدمة العملاء الآن... ⏳
 
 → [يتم التحويل لموظف بشري]
-```
+\`\`\`
 
 ---
 
@@ -132,7 +132,7 @@ AI Agent → WhatsApp API → عميل
 
 AI Agent متكامل مع نظام Webhook Router:
 
-```javascript
+\`\`\`javascript
 // في webhook/route.ts
 if (routing.action === "bot" && message.text?.body) {
   // استدعاء AI Agent
@@ -147,16 +147,16 @@ if (routing.action === "bot" && message.text?.body) {
     message: aiResponse
   })
 }
-```
+\`\`\`
 
 ---
 
 ## واجهة إدارة AI Agent
 
 ### الوصول
-```
+\`\`\`
 http://yourdomain.com/control → تاب "AI Agent"
-```
+\`\`\`
 
 ### المميزات المتاحة:
 
@@ -181,12 +181,12 @@ http://yourdomain.com/control → تاب "AI Agent"
 ## API Endpoints
 
 ### 1. الحصول على طلبات الصيانة
-```bash
+\`\`\`bash
 GET /api/ai-maintenance
-```
+\`\`\`
 
 **Response:**
-```json
+\`\`\`json
 {
   "success": true,
   "requests": [
@@ -201,10 +201,10 @@ GET /api/ai-maintenance
     }
   ]
 }
-```
+\`\`\`
 
 ### 2. تحديث حالة طلب
-```bash
+\`\`\`bash
 POST /api/ai-maintenance
 Content-Type: application/json
 
@@ -215,15 +215,15 @@ Content-Type: application/json
     "assignedTo": "فني محمد"
   }
 }
-```
+\`\`\`
 
 ### 3. إحصائيات AI Agent
-```bash
+\`\`\`bash
 GET /api/ai-stats
-```
+\`\`\`
 
 **Response:**
-```json
+\`\`\`json
 {
   "success": true,
   "stats": {
@@ -233,7 +233,7 @@ GET /api/ai-stats
     "urgentRequests": 1
   }
 }
-```
+\`\`\`
 
 ---
 
@@ -243,7 +243,7 @@ GET /api/ai-stats
 
 في ملف `lib/azure-openai-agent.ts`:
 
-```typescript
+\`\`\`typescript
 private getSystemPrompt(): string {
   return `أنت مساعد ذكي لشركة Uberfix...
   
@@ -254,20 +254,20 @@ private getSystemPrompt(): string {
   - لغة الرد والأسلوب
   `
 }
-```
+\`\`\`
 
 ### إضافة فئة خدمة جديدة
 
-```typescript
+\`\`\`typescript
 // في extractCategory()
 if (lowerText.includes("تنظيف") || lowerText.includes("نظافة")) {
   return "cleaning"
 }
-```
+\`\`\`
 
 ### تخصيص Trigger Keywords
 
-```typescript
+\`\`\`typescript
 // في analyzeForMaintenanceRequest()
 const requestKeywords = [
   "طلب صيانة",
@@ -276,7 +276,7 @@ const requestKeywords = [
   "عايز خدمة",
   "ممكن تجي",
 ]
-```
+\`\`\`
 
 ---
 

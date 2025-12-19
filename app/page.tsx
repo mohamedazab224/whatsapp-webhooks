@@ -1,34 +1,8 @@
 import Link from "next/link"
-import Image from "next/image"
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted flex flex-col">
-      {/* Navigation */}
-      <nav className="border-b border-border/40 bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <div className="flex items-center gap-3">
-            <Image src="/logo.svg" alt="Logo" width={40} height={40} className="rounded-lg" />
-            <span className="text-xl font-bold text-foreground">WhatsApp Hub</span>
-          </div>
-          <div className="flex gap-2">
-            <Link
-              href="/control"
-              className="flex items-center gap-2 rounded-lg border border-primary bg-primary/10 px-4 py-2 font-medium text-primary transition-all hover:bg-primary/20"
-            >
-              لوحة التحكم
-            </Link>
-            <Link
-              href="/dashboard"
-              className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-6 py-2.5 font-semibold text-primary-foreground transition-all hover:shadow-lg"
-            >
-              الذهاب للوحة التحكم
-              <span>→</span>
-            </Link>
-          </div>
-        </div>
-      </nav>
-
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
       {/* Hero Section */}
       <main className="flex-1 container mx-auto px-4 py-20">
         <div className="grid gap-12 md:grid-cols-2 items-center">
@@ -39,43 +13,90 @@ export default function Page() {
                 مركز إدارة الرسائل والملاحظات
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                تطبيق احترافي لإدارة رسائل WhatsApp وجمع آراء العملاء والملاحظات بسهولة
+                تطبيق احترافي لإدارة رسائل WhatsApp مع AI Agent ذكي وجمع آراء العملاء والملاحظات بسهولة
               </p>
             </div>
 
-            <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-xl">💬</div>
+            {/* Features Grid */}
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-card/50 border border-border/50">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20 text-xl shrink-0">
+                  💬
+                </div>
                 <div>
                   <h3 className="font-semibold text-foreground">إدارة الرسائل</h3>
-                  <p className="text-muted-foreground">عرض وتنظيم جميع الرسائل الواردة والصادرة في مكان واحد</p>
+                  <p className="text-sm text-muted-foreground">إرسال واستقبال رسائل WhatsApp</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary/20 text-xl">⭐</div>
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-card/50 border border-border/50">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary/20 text-xl shrink-0">
+                  📋
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">قوالب الرسائل</h3>
+                  <p className="text-sm text-muted-foreground">إنشاء وإدارة القوالب الجاهزة</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-card/50 border border-border/50">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/20 text-xl shrink-0">
+                  🤖
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">AI Agent</h3>
+                  <p className="text-sm text-muted-foreground">رد تلقائي ذكي على العملاء</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-card/50 border border-border/50">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-chart-1/20 text-xl shrink-0">
+                  📊
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">التحليلات</h3>
+                  <p className="text-sm text-muted-foreground">إحصائيات وتقارير شاملة</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-card/50 border border-border/50">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-chart-2/20 text-xl shrink-0">
+                  ⭐
+                </div>
                 <div>
                   <h3 className="font-semibold text-foreground">جمع الملاحظات</h3>
-                  <p className="text-muted-foreground">نموذج سهل الاستخدام لجمع آراء العملاء والاقتراحات</p>
+                  <p className="text-sm text-muted-foreground">آراء واقتراحات العملاء</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-accent/20 text-xl">📊</div>
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-card/50 border border-border/50">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-chart-3/20 text-xl shrink-0">
+                  📚
+                </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">تحليل البيانات</h3>
-                  <p className="text-muted-foreground">إحصائيات وتقارير شاملة عن الرسائل والملاحظات</p>
+                  <h3 className="font-semibold text-foreground">قاعدة المعرفة</h3>
+                  <p className="text-sm text-muted-foreground">تدريب AI بالمستندات</p>
                 </div>
               </div>
             </div>
 
-            <Link
-              href="/dashboard"
-              className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-8 py-3 font-semibold text-primary-foreground transition-all hover:shadow-lg hover:scale-105"
-            >
-              ابدأ الآن
-              <span>→</span>
-            </Link>
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/control"
+                className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-8 py-3 font-semibold text-primary-foreground transition-all hover:shadow-lg hover:scale-105"
+              >
+                ابدأ الآن
+                <span>→</span>
+              </Link>
+              <Link
+                href="/ai-training"
+                className="inline-flex items-center gap-2 rounded-lg border-2 border-accent bg-accent/10 px-8 py-3 font-semibold text-accent transition-all hover:bg-accent/20"
+              >
+                <span>🤖</span>
+                <span>جرب AI Agent</span>
+              </Link>
+            </div>
           </div>
 
           {/* Right Column - Visual */}
@@ -104,9 +125,36 @@ export default function Page() {
                       <div className="h-2 w-1/2 rounded bg-muted/50"></div>
                     </div>
                   </div>
+                  <div className="flex gap-2">
+                    <div className="h-10 w-10 rounded-full bg-accent/20"></div>
+                    <div className="flex-1 space-y-2">
+                      <div className="h-3 w-2/3 rounded bg-muted"></div>
+                      <div className="h-2 w-1/2 rounded bg-muted/50"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Quick Stats Section */}
+        <div className="mt-20 grid gap-6 md:grid-cols-4">
+          <div className="rounded-xl border border-border bg-card p-6 text-center">
+            <div className="text-3xl font-bold text-primary">100%</div>
+            <div className="text-sm text-muted-foreground mt-2">أتمتة كاملة</div>
+          </div>
+          <div className="rounded-xl border border-border bg-card p-6 text-center">
+            <div className="text-3xl font-bold text-secondary">24/7</div>
+            <div className="text-sm text-muted-foreground mt-2">خدمة مستمرة</div>
+          </div>
+          <div className="rounded-xl border border-border bg-card p-6 text-center">
+            <div className="text-3xl font-bold text-accent">AI</div>
+            <div className="text-sm text-muted-foreground mt-2">ذكاء اصطناعي</div>
+          </div>
+          <div className="rounded-xl border border-border bg-card p-6 text-center">
+            <div className="text-3xl font-bold text-chart-1">⚡</div>
+            <div className="text-sm text-muted-foreground mt-2">سرعة فائقة</div>
           </div>
         </div>
       </main>
