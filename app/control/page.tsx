@@ -7,6 +7,7 @@ import MessagesPanel from "@/components/messages-panel"
 import StatsDashboard from "@/components/stats-dashboard"
 import FeedbackForm from "@/components/feedback-form"
 import TemplatesManager from "@/components/templates-manager"
+import { AIMaintenancePanel } from "@/components/ai-maintenance-panel"
 import { Toaster } from "@/components/ui/toaster"
 
 export default function ControlPage() {
@@ -39,9 +40,10 @@ export default function ControlPage() {
 
           {/* Tabs */}
           <Tabs defaultValue="send" className="space-y-4">
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="send">إرسال رسالة</TabsTrigger>
               <TabsTrigger value="templates">القوالب</TabsTrigger>
+              <TabsTrigger value="ai">AI Agent</TabsTrigger>
               <TabsTrigger value="messages">الرسائل الواردة</TabsTrigger>
               <TabsTrigger value="feedback">الملاحظات</TabsTrigger>
             </TabsList>
@@ -52,6 +54,10 @@ export default function ControlPage() {
 
             <TabsContent value="templates" className="space-y-4">
               <TemplatesManager />
+            </TabsContent>
+
+            <TabsContent value="ai" className="space-y-4">
+              <AIMaintenancePanel />
             </TabsContent>
 
             <TabsContent value="messages" className="space-y-4">

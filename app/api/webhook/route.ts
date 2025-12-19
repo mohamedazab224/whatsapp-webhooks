@@ -2,6 +2,8 @@ import { type NextRequest, NextResponse } from "next/server"
 import { messageStore } from "@/lib/storage"
 import { webhookRouter } from "@/lib/webhook-router"
 import { systemUsersManager } from "@/lib/system-users"
+import { azureOpenAIAgent } from "@/lib/azure-openai-agent"
+import { sendWhatsAppMessage } from "@/lib/whatsapp"
 
 // GET - التحقق من Webhook
 export async function GET(request: NextRequest) {
@@ -78,6 +80,34 @@ export async function POST(request: NextRequest) {
       }
 
       messageStore.addMessage(newMessage)
+
+      if (routing.action === "bot" && message.text?.body) {
+        try {
+          const aiResponse = await azureOpenAIAgent.respondToMessage(message.from, message.text.body)
+
+          // إرسال الرد عبر WhatsApp
+          await sendWhatsAppMessage({
+            phoneNumber: message.from,
+            message: aiResponse,
+          })
+
+          // حفظ رد البوت في قاعدة البيانات
+          messageStore.addMessage({
+            id: `bot-${Date.now()}`,
+            from: message.from,
+            name: "Uberfix Bot",
+            text: aiResponse,
+            timestamp: Date.now(),
+            type: "outgoing",
+            status: "sent",
+            createdAt: new Date().toISOString(),
+          })
+
+          console.log("[v0] AI response sent successfully")
+        } catch (error) {
+          console.error("[v0] Error sending AI response:", error)
+        }
+      }
     }
 
     if (body.entry?.[0]?.changes?.[0]?.value?.statuses) {

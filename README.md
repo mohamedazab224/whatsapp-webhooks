@@ -5,8 +5,9 @@
 ![WhatsApp Hub](https://img.shields.io/badge/WhatsApp-Business_API-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Azure OpenAI](https://img.shields.io/badge/Azure-OpenAI-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)
 
-تطبيق Next.js احترافي لإدارة رسائل WhatsApp عبر WhatsApp Business API مع إمكانية جمع آراء العملاء والملاحظات.
+تطبيق Next.js احترافي لإدارة رسائل WhatsApp عبر WhatsApp Business API مع Azure OpenAI Agent للرد التلقائي الذكي.
 
 [البداية السريعة](#البداية-السريعة) • [الميزات](#المميزات) • [التوثيق](#التوثيق) • [النشر](#النشر)
 
@@ -17,12 +18,13 @@
 ## المميزات
 
 - ✅ إرسال واستقبال رسائل WhatsApp
+- ✅ **Azure OpenAI Agent** - ردود تلقائية ذكية بالذكاء الاصطناعي
+- ✅ **إدارة طلبات الصيانة** - تلقائية بالكامل
 - ✅ لوحة تحكم شاملة مع إحصائيات مباشرة
-- ✅ نظام webhook لاستقبال الرسائل الواردة
+- ✅ نظام webhook ذكي للتوجيه التلقائي
 - ✅ نموذج لجمع آراء وملاحظات العملاء
+- ✅ نظام قوالب رسائل احترافي
 - ✅ واجهة عربية احترافية مع تصميم عصري
-- ✅ نظام بحث وتصفية للرسائل
-- ✅ دعم كامل لـ WhatsApp Business API
 
 ---
 
@@ -30,7 +32,7 @@
 
 ### التثبيت والتشغيل
 
-\`\`\`bash
+```bash
 # 1. تثبيت الحزم
 npm install
 
@@ -42,7 +44,7 @@ npm run dev
 
 # 4. افتح المتصفح
 # http://localhost:3000
-\`\`\`
+```
 
 ### إرسال أول رسالة
 
@@ -61,7 +63,7 @@ npm run dev
 | الصفحة | المسار | الوصف |
 |--------|--------|-------|
 | 🏠 الرئيسية | `/` | صفحة الترحيب والتعريف |
-| 🎛️ لوحة التحكم | `/control` | إرسال واستقبال الرسائل |
+| 🎛️ لوحة التحكم | `/control` | إرسال واستقبال الرسائل + AI Agent |
 | 📊 لوحة المراجعة | `/dashboard` | عرض الرسائل والملاحظات |
 
 ---
@@ -79,14 +81,36 @@ npm run dev
 ### Stats
 - `GET /api/stats` - جلب الإحصائيات
 
+### AI Agent
+- `GET /api/ai-maintenance` - طلبات الصيانة
+- `POST /api/ai-maintenance` - تحديث طلب
+- `GET /api/ai-stats` - إحصائيات AI
+
 ---
 
-## التوثيق
+## AI Agent المميزات الجديدة
 
-- 📖 [دليل الإعداد الكامل](PRODUCTION_SETUP.md)
-- 🚀 [البداية السريعة](QUICK_START.md)
-- 📚 [توثيق API](docs/API_DOCUMENTATION.md)
-- ⚙️ [دليل الإعداد](docs/SETUP_GUIDE.md)
+### الرد التلقائي الذكي
+- فهم اللغة العربية والإنجليزية
+- سياق المحادثة محفوظ
+- ردود فورية احترافية
+
+### إدارة طلبات الصيانة
+- إنشاء تلقائي عند الطلب
+- تصنيف حسب النوع (سباكة، كهرباء، تكييف، إلخ)
+- تحديد مستوى الطوارئ
+- واجهة إدارة كاملة
+
+### أمثلة على الاستخدام
+
+```
+عميل: السلام عليكم، عندي تسريب ماء في المطبخ ضروري
+
+AI Bot: وعليكم السلام 👋
+تم استلام طلبكم بخصوص تسريب المياه.
+رقم الطلب: REQ-1234567890
+سيتم التواصل معكم خلال 30 دقيقة.
+```
 
 ---
 
@@ -94,12 +118,14 @@ npm run dev
 
 التطبيق مُعد بالكامل بالمعرفات الصحيحة:
 
-\`\`\`env
+```env
 ✅ WHATSAPP_PHONE_NUMBER_ID=644995285354639
 ✅ WHATSAPP_API_TOKEN=EAAKSz8Epkqk...
-✅ WHATSAPP_APP_ID=724370950034089
+✅ AZURE_OPENAI_KEY=B9miWBdymm8e4BUFox...
+✅ AZURE_OPENAI_DEPLOYMENT=AzaBot
+✅ AZURE_OPENAI_ENDPOINT=https://azabotai.openai.azure.com
 ✅ WEBHOOK_VERIFY_TOKEN=uberfix_webhook_secure_2024_token
-\`\`\`
+```
 
 ### رقم الاختبار
 - 📱 `+1 555 728 5727`
@@ -111,10 +137,10 @@ npm run dev
 
 ### استخدام ngrok
 
-\`\`\`bash
+```bash
 # تشغيل ngrok
 ngrok http 3000
-\`\`\`
+```
 
 ### إضافة Webhook في Meta
 
@@ -130,19 +156,19 @@ ngrok http 3000
 
 ### Vercel (موصى به)
 
-\`\`\`bash
+```bash
 vercel
-\`\`\`
+```
 
 ### VPS أو Server
 
-\`\`\`bash
+```bash
 npm run build
 npm start
 
 # أو باستخدام PM2
 pm2 start npm --name "whatsapp-hub" -- start
-\`\`\`
+```
 
 راجع [PRODUCTION_SETUP.md](PRODUCTION_SETUP.md) للتفاصيل الكاملة.
 
@@ -150,12 +176,13 @@ pm2 start npm --name "whatsapp-hub" -- start
 
 ## البنية
 
-\`\`\`
+```
 ├── app/
 │   ├── api/              # API Routes
 │   │   ├── messages/     # إدارة الرسائل
 │   │   ├── stats/        # الإحصائيات
-│   │   └── webhook/      # WhatsApp webhook
+│   │   ├── webhook/      # WhatsApp webhook
+│   │   └── ai-maintenance/ # AI Agent for maintenance requests
 │   ├── control/          # لوحة التحكم
 │   ├── dashboard/        # لوحة المراجعة
 │   └── page.tsx          # الصفحة الرئيسية
@@ -164,9 +191,10 @@ pm2 start npm --name "whatsapp-hub" -- start
 │   └── ...              # Custom components
 ├── lib/                 # Utilities
 │   ├── whatsapp.ts      # WhatsApp API client
-│   └── storage.ts       # Message storage
+│   ├── storage.ts       # Message storage
+│   └── ai-agent.ts      # Azure OpenAI Agent
 └── public/              # Static files
-\`\`\`
+```
 
 ---
 
@@ -174,11 +202,11 @@ pm2 start npm --name "whatsapp-hub" -- start
 
 ### الرسالة لا ترسل؟
 
-\`\`\`bash
+```bash
 # تحقق من console logs
 [v0] Sending message to: 15557285727
 [v0] Message sent successfully
-\`\`\`
+```
 
 **الحلول:**
 - تأكد من تشغيل `npm run dev`
@@ -194,13 +222,24 @@ pm2 start npm --name "whatsapp-hub" -- start
 
 ---
 
+## التوثيق
+
+- 📖 [دليل الإعداد الكامل](PRODUCTION_SETUP.md)
+- 🤖 [دليل Azure OpenAI Agent](docs/AZURE_OPENAI_SETUP.md)
+- 🚀 [البداية السريعة](QUICK_START.md)
+- 📚 [توثيق API](docs/API_DOCUMENTATION.md)
+- ⚙️ [دليل الإعداد](docs/SETUP_GUIDE.md)
+
+---
+
 ## التقنيات المستخدمة
 
 - **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4
 - **UI Components**: shadcn/ui
-- **API**: WhatsApp Business API (Graph API v21.0)
+- **WhatsApp**: WhatsApp Business API (Graph API v21.0)
+- **AI**: Azure OpenAI (GPT-4)
 
 ---
 
@@ -237,6 +276,6 @@ MIT License - استخدم بحرية في مشاريعك
 
 <div align="center">
 
-**صُنع بـ ❤️ لإدارة رسائل WhatsApp بكفاءة**
+**صُنع بـ ❤️ و 🤖 لإدارة رسائل WhatsApp بكفاءة**
 
 </div>
