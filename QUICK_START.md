@@ -4,9 +4,9 @@
 
 ### 1️⃣ التثبيت
 
-```bash
+\`\`\`bash
 npm install
-```
+\`\`\`
 
 ### 2️⃣ التكوين
 
@@ -14,9 +14,9 @@ npm install
 
 ### 3️⃣ التشغيل
 
-```bash
+\`\`\`bash
 npm run dev
-```
+\`\`\`
 
 ### 4️⃣ الاختبار
 
@@ -39,10 +39,10 @@ npm run dev
 
 ### باستخدام ngrok:
 
-```bash
+\`\`\`bash
 # في terminal جديد
 ngrok http 3000
-```
+\`\`\`
 
 انسخ الرابط (مثل: `https://abc123.ngrok.io`) واذهب إلى:
 [Meta Webhook Settings](https://developers.facebook.com/apps/724370950034089/whatsapp-business/wa-settings/)

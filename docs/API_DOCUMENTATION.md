@@ -25,10 +25,10 @@
 - `hub.challenge` - التحدي للتحقق
 
 **Response:**
-```
+\`\`\`
 200 OK
 {challenge_value}
-```
+\`\`\`
 
 ---
 
@@ -39,7 +39,7 @@
 استقبال الرسائل الواردة من WhatsApp.
 
 **Request Body:**
-```json
+\`\`\`json
 {
   "entry": [
     {
@@ -69,14 +69,14 @@
     }
   ]
 }
-```
+\`\`\`
 
 **Response:**
-```json
+\`\`\`json
 {
   "success": true
 }
-```
+\`\`\`
 
 ---
 
@@ -87,15 +87,15 @@
 إرسال رسالة WhatsApp.
 
 **Request Body:**
-```json
+\`\`\`json
 {
   "phoneNumber": "966500000000",
   "message": "Hello from WhatsApp Hub!"
 }
-```
+\`\`\`
 
 **Success Response:**
-```json
+\`\`\`json
 {
   "success": true,
   "message": "تم إرسال الرسالة بنجاح",
@@ -105,15 +105,15 @@
     "messages": [...]
   }
 }
-```
+\`\`\`
 
 **Error Response:**
-```json
+\`\`\`json
 {
   "error": "فشل إرسال الرسالة",
   "details": {...}
 }
-```
+\`\`\`
 
 ---
 
@@ -124,7 +124,7 @@
 جلب جميع الرسائل المخزنة.
 
 **Response:**
-```json
+\`\`\`json
 {
   "success": true,
   "messages": [
@@ -140,7 +140,7 @@
   ],
   "total": 10
 }
-```
+\`\`\`
 
 ---
 
@@ -151,7 +151,7 @@
 جلب إحصائيات الرسائل.
 
 **Response:**
-```json
+\`\`\`json
 {
   "success": true,
   "stats": {
@@ -164,7 +164,7 @@
     "failed": 2
   }
 }
-```
+\`\`\`
 
 ## Error Codes
 
@@ -187,7 +187,7 @@
 يتم إطلاقه عند استقبال رسالة جديدة.
 
 **Payload:**
-```json
+\`\`\`json
 {
   "event": "message.received",
   "data": {

@@ -30,7 +30,7 @@
 
 ### التثبيت والتشغيل
 
-```bash
+\`\`\`bash
 # 1. تثبيت الحزم
 npm install
 
@@ -42,7 +42,7 @@ npm run dev
 
 # 4. افتح المتصفح
 # http://localhost:3000
-```
+\`\`\`
 
 ### إرسال أول رسالة
 
@@ -94,12 +94,12 @@ npm run dev
 
 التطبيق مُعد بالكامل بالمعرفات الصحيحة:
 
-```env
+\`\`\`env
 ✅ WHATSAPP_PHONE_NUMBER_ID=644995285354639
 ✅ WHATSAPP_API_TOKEN=EAAKSz8Epkqk...
 ✅ WHATSAPP_APP_ID=724370950034089
 ✅ WEBHOOK_VERIFY_TOKEN=uberfix_webhook_secure_2024_token
-```
+\`\`\`
 
 ### رقم الاختبار
 - 📱 `+1 555 728 5727`
@@ -111,10 +111,10 @@ npm run dev
 
 ### استخدام ngrok
 
-```bash
+\`\`\`bash
 # تشغيل ngrok
 ngrok http 3000
-```
+\`\`\`
 
 ### إضافة Webhook في Meta
 
@@ -130,19 +130,19 @@ ngrok http 3000
 
 ### Vercel (موصى به)
 
-```bash
+\`\`\`bash
 vercel
-```
+\`\`\`
 
 ### VPS أو Server
 
-```bash
+\`\`\`bash
 npm run build
 npm start
 
 # أو باستخدام PM2
 pm2 start npm --name "whatsapp-hub" -- start
-```
+\`\`\`
 
 راجع [PRODUCTION_SETUP.md](PRODUCTION_SETUP.md) للتفاصيل الكاملة.
 
@@ -150,7 +150,7 @@ pm2 start npm --name "whatsapp-hub" -- start
 
 ## البنية
 
-```
+\`\`\`
 ├── app/
 │   ├── api/              # API Routes
 │   │   ├── messages/     # إدارة الرسائل
@@ -166,7 +166,7 @@ pm2 start npm --name "whatsapp-hub" -- start
 │   ├── whatsapp.ts      # WhatsApp API client
 │   └── storage.ts       # Message storage
 └── public/              # Static files
-```
+\`\`\`
 
 ---
 
@@ -174,11 +174,11 @@ pm2 start npm --name "whatsapp-hub" -- start
 
 ### الرسالة لا ترسل؟
 
-```bash
+\`\`\`bash
 # تحقق من console logs
 [v0] Sending message to: 15557285727
 [v0] Message sent successfully
-```
+\`\`\`
 
 **الحلول:**
 - تأكد من تشغيل `npm run dev`

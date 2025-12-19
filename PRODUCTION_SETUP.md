@@ -4,7 +4,7 @@
 
 ### بيانات الاعتماد (Production Credentials)
 
-```env
+\`\`\`env
 WHATSAPP_PHONE_NUMBER_ID=644995285354639
 WHATSAPP_BUSINESS_ACCOUNT_ID=459851797218855
 WHATSAPP_API_TOKEN=EAAKSz8EpkqkBQLZApF5bzj8jUoOZA2tl5x7G5wWxJXBaRbNnQcqr3pkWSwEaNdRcT9Ft6ZBytyC5lWCWSNzVQTMnF6rS46SomWsNFuwy8e2rwJv7kLMQu6X5qOrrLZCkqphqJPf4Rl9NmpceaGvStZAL5s1lwAJNA6enZAVtCz1I4MOZCtyqlUmQMdQIJ4lEhwmNyN92B9JTaJXZBKzGdyxHwkBSqfyfqxDZCFTc63vC9ieyXPb8suZCGNk1LFRxkJBDsZD
@@ -14,13 +14,13 @@ WHATSAPP_API_VERSION=v21.0
 WHATSAPP_CRM_TOKEN=your_crm_token_here
 WHATSAPP_INTEGRATION_TOKEN=your_integration_token_here
 WEBHOOK_VERIFY_TOKEN=uberfix_whatsapp_verify
-```
+\`\`\`
 
 ### رقم الهاتف الاختباري
-```
+\`\`\`
 رقم الهاتف: +1 555 728 5727
 صالح لمدة: 90 يوم
-```
+\`\`\`
 
 ### معرفات التكوين
 - معرف التكوين الرئيسي: `1156013066694989`
@@ -41,29 +41,29 @@ WEBHOOK_VERIFY_TOKEN=uberfix_whatsapp_verify
 
 ### 1. تثبيت المشروع
 
-```bash
+\`\`\`bash
 # استنساخ أو تحميل المشروع
 cd whatsapp-hub
 
 # تثبيت الحزم
 npm install
-```
+\`\`\`
 
 ### 2. إعداد ملف البيئة
 
 أنشئ ملف `.env.local` في المجلد الرئيسي:
 
-```bash
+\`\`\`bash
 cp .env.local.example .env.local
-```
+\`\`\`
 
 ثم عدّل الملف بالمعرفات الصحيحة (المعرفات أعلاه مضافة مسبقاً في `.env.local`).
 
 ### 3. تشغيل التطبيق محلياً
 
-```bash
+\`\`\`bash
 npm run dev
-```
+\`\`\`
 
 التطبيق سيعمل على: `http://localhost:3000`
 
@@ -80,13 +80,13 @@ npm run dev
 
 ### استخدام ngrok للتطوير المحلي
 
-```bash
+\`\`\`bash
 # تثبيت ngrok
 npm install -g ngrok
 
 # تشغيل ngrok
 ngrok http 3000
-```
+\`\`\`
 
 سيعطيك ngrok رابط مثل: `https://abc123.ngrok.io`
 
@@ -106,11 +106,11 @@ ngrok http 3000
 
 ### اختبار Webhook
 
-```bash
+\`\`\`bash
 # سيظهر في console logs عند استقبال رسالة
 [v0] Webhook received: {...}
 [v0] Message stored: {...}
-```
+\`\`\`
 
 أرسل رسالة من WhatsApp إلى رقمك الاختباري وتحقق من الـ logs.
 
@@ -123,21 +123,21 @@ ngrok http 3000
 #### Configuration
 
 **Webhook URL**
-```
+\`\`\`
 https://webhook.uberfix.shop
 34.140.51.106
-```
+\`\`\`
 
 **Verify Token**
-```
+\`\`\`
 uberfix_whatsapp_verify
-```
+\`\`\`
 
 **Subscribed Fields**
-```
+\`\`\`
 messages
 message_status
-```
+\`\`\`
 
 ---
 
@@ -179,9 +179,9 @@ message_status
 
 **في التطبيق:**
 أضف المتغير البيئي:
-```env
+\`\`\`env
 WHATSAPP_CRM_TOKEN=your_crm_token_here
-```
+\`\`\`
 
 ---
 
@@ -201,9 +201,9 @@ WHATSAPP_CRM_TOKEN=your_crm_token_here
 
 **في التطبيق:**
 أضف المتغير البيئي:
-```env
+\`\`\`env
 WHATSAPP_INTEGRATION_TOKEN=your_integration_token_here
-```
+\`\`\`
 
 ---
 
@@ -222,7 +222,7 @@ WHATSAPP_INTEGRATION_TOKEN=your_integration_token_here
 
 #### قواعد التوجيه:
 
-```javascript
+\`\`\`javascript
 // رسائل نصية عادية → البوت
 if (message.type === "text") → automation_bot
 
@@ -237,7 +237,7 @@ if (text.includes("موظف" | "شكوى" | "مشكلة")) → human_agent
 
 // عدم رد مناسب بعد رسالتين → موظف بشري
 if (unanswered_count >= 2) → human_agent
-```
+\`\`\`
 
 ---
 
@@ -271,7 +271,7 @@ if (unanswered_count >= 2) → human_agent
 
 ### API للتحويل اليدوي:
 
-```bash
+\`\`\`bash
 # تحويل للموظف البشري
 curl -X POST https://yourdomain.com/api/sessions \
   -H "Content-Type: application/json" \
@@ -288,7 +288,7 @@ curl -X POST https://yourdomain.com/api/sessions \
     "phoneNumber": "966xxxxxxxxx",
     "action": "handover_to_bot"
   }'
-```
+\`\`\`
 
 ---
 
@@ -304,9 +304,9 @@ curl -X POST https://yourdomain.com/api/sessions \
 - رسائل تسجيل الدخول
 
 **مثال:**
-```
+\`\`\`
 رمز التحقق الخاص بك هو: {{1}}. صالح لمدة 5 دقائق.
-```
+\`\`\`
 
 #### 2. `service_` - الخدمات
 - `service_maintenance_request` - صيانة / طلب
@@ -314,9 +314,9 @@ curl -X POST https://yourdomain.com/api/sessions \
 - تأكيد الخدمات
 
 **مثال:**
-```
+\`\`\`
 تم استلام طلب الصيانة رقم {{1}}. سيتواصل معك الفني قريباً.
-```
+\`\`\`
 
 #### 3. `notify_` - الإشعارات
 - `notify_order_status` - إشعارات
@@ -324,9 +324,9 @@ curl -X POST https://yourdomain.com/api/sessions \
 - إشعارات النظام
 
 **مثال:**
-```
+\`\`\`
 طلبك رقم {{1}} أصبح في حالة: {{2}}. شكراً لثقتك!
-```
+\`\`\`
 
 #### 4. `promo_` - العروض
 - `promo_special_offer` - عروض (بحذر)
@@ -334,9 +334,9 @@ curl -X POST https://yourdomain.com/api/sessions \
 - الحملات التسويقية
 
 **مثال:**
-```
+\`\`\`
 عرض خاص لك! خصم {{1}}% على جميع الخدمات. استخدم الكود: {{2}}
-```
+\`\`\`
 
 #### 5. `system_` - النظام
 - `system_update_notification` - تحديثات حالة
@@ -344,9 +344,9 @@ curl -X POST https://yourdomain.com/api/sessions \
 - إشعارات فنية
 
 **مثال:**
-```
+\`\`\`
 سيتم إجراء صيانة للنظام يوم {{1}} من {{2}} إلى {{3}}. نعتذر عن أي إزعاج.
-```
+\`\`\`
 
 ### إضافة قالب جديد من الواجهة:
 
@@ -370,7 +370,7 @@ curl -X POST https://yourdomain.com/api/sessions \
 ### IP Allowlist (للإنتاج)
 أضف IPs Meta WhatsApp فقط في Nginx أو Firewall:
 
-```nginx
+\`\`\`nginx
 # في ملف nginx.conf
 location /api/webhook {
     allow 31.13.0.0/16;
@@ -382,15 +382,15 @@ location /api/webhook {
     
     proxy_pass http://localhost:3000;
 }
-```
+\`\`\`
 
 ### Rate Limits
 استخدم middleware للحد من عدد الطلبات:
 
-```typescript
+\`\`\`typescript
 // في middleware.ts أو API route
 const MAX_REQUESTS = 1000 // طلب في الدقيقة
-```
+\`\`\`
 
 ---
 
@@ -443,7 +443,7 @@ const MAX_REQUESTS = 1000 // طلب في الدقيقة
 
 ### مراقبة الـ Console Logs:
 
-```bash
+\`\`\`bash
 # عند استقبال رسالة
 [v0] Webhook received: {...}
 [v0] Routing decision: {...}
@@ -455,7 +455,7 @@ const MAX_REQUESTS = 1000 // طلب في الدقيقة
 # عند إرسال رسالة
 [v0] Sending message to: 966xxxxxxxxx
 [v0] Message stored: {...}
-```
+\`\`\`
 
 ---
 
@@ -463,7 +463,7 @@ const MAX_REQUESTS = 1000 // طلب في الدقيقة
 
 ### الخيار 1: Vercel (الأسهل)
 
-```bash
+\`\`\`bash
 # تثبيت Vercel CLI
 npm i -g vercel
 
@@ -484,11 +484,11 @@ vercel env add WHATSAPP_INTEGRATION_TOKEN
 
 # نشر نهائي
 vercel --prod
-```
+\`\`\`
 
 ### الخيار 2: VPS أو خادم خاص
 
-```bash
+\`\`\`bash
 # على السيرفر
 git clone your-repo.git
 cd whatsapp-hub
@@ -506,11 +506,11 @@ npm install -g pm2
 pm2 start npm --name "whatsapp-hub" -- start
 pm2 save
 pm2 startup
-```
+\`\`\`
 
 ### إعداد Nginx (للـ VPS)
 
-```nginx
+\`\`\`nginx
 server {
     listen 80;
     server_name yourdomain.com;
@@ -535,17 +535,17 @@ server {
         proxy_pass http://localhost:3000;
     }
 }
-```
+\`\`\`
 
 ثم:
 
-```bash
+\`\`\`bash
 sudo nginx -t
 sudo systemctl reload nginx
 
 # إعداد SSL مع Certbot
 sudo certbot --nginx -d yourdomain.com
-```
+\`\`\`
 
 ---
 
@@ -566,11 +566,11 @@ sudo certbot --nginx -d yourdomain.com
 3. الرقم غير مسجل كـ Test Number - أضفه من لوحة Meta
 
 **التحقق:**
-```bash
+\`\`\`bash
 # افحص الـ console logs
 [v0] Sending message to: 15557285727
 [v0] WhatsApp API Error: {...}
-```
+\`\`\`
 
 ### خطأ: Webhook Verification Failed
 
@@ -620,13 +620,13 @@ sudo certbot --nginx -d yourdomain.com
 
 ### متغيرات البيئة الآمنة
 
-```env
+\`\`\`env
 # استخدم قيم قوية وعشوائية
 WEBHOOK_VERIFY_TOKEN=$(openssl rand -hex 32)
 
 # لا تضف المعرفات في Git
 echo ".env.local" >> .gitignore
-```
+\`\`\`
 
 ---
 

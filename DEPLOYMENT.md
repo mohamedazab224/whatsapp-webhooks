@@ -10,7 +10,7 @@
 
 ### 1. تحضير السيرفر
 
-```bash
+\`\`\`bash
 # تحديث النظام
 sudo apt update && sudo apt upgrade -y
 
@@ -25,22 +25,22 @@ sudo npm install -g pm2
 sudo mkdir -p /var/www/whatsapp-webhook
 sudo chown $USER:$USER /var/www/whatsapp-webhook
 cd /var/www/whatsapp-webhook
-```
+\`\`\`
 
 ### 2. نسخ الملفات
 
-```bash
+\`\`\`bash
 # من جهازك المحلي
 scp -r ./* user@webhook.alazab.com:/var/www/whatsapp-webhook/
 
 # أو استخدم git
 cd /var/www/whatsapp-webhook
 git clone your-repo .
-```
+\`\`\`
 
 ### 3. تثبيت المتعلقات
 
-```bash
+\`\`\`bash
 cd /var/www/whatsapp-webhook
 
 # تثبيت Backend
@@ -51,39 +51,39 @@ cd client
 npm install
 npm run build
 cd ..
-```
+\`\`\`
 
 ### 4. إعداد متغيرات البيئة
 
-```bash
+\`\`\`bash
 # نسخ ملف المثال
 cp .env.example .env
 
 # تعديل .env بمفاتيحك الفعلية
 nano .env
-```
+\`\`\`
 
 أضف المتغيرات التالية:
-```
+\`\`\`
 PORT=8005
 WHATSAPP_API_URL=https://graph.instagram.com/v18.0
 WHATSAPP_VERIFY_TOKEN=your-verify-token-here
 WHATSAPP_ACCESS_TOKEN=your-access-token-here
 WHATSAPP_BUSINESS_PHONE_ID=your-phone-id-here
-```
+\`\`\`
 
 ### 5. بدء التطبيق
 
-```bash
+\`\`\`bash
 # اختبار محلي أولاً
 npm start
 
 # يجب أن تحصل على: Server running on http://localhost:8005
-```
+\`\`\`
 
 ### 6. استخدام PM2 لتشغيل الخادم في الخلفية
 
-```bash
+\`\`\`bash
 # بدء التطبيق مع PM2
 pm2 start server.js --name "whatsapp-webhook"
 
@@ -94,13 +94,13 @@ pm2 save
 # عرض الحالة
 pm2 status
 pm2 logs whatsapp-webhook
-```
+\`\`\`
 
 ### 7. تكوين Nginx (بناءً على إعدادك الحالي)
 
 Nginx config موجود بالفعل في السيرفر، تأكد من أنه يشير إلى:
 
-```nginx
+\`\`\`nginx
 upstream nodejs {
     server 127.0.0.1:8005;
 }
@@ -124,16 +124,16 @@ server {
         proxy_read_timeout 120s;
     }
 }
-```
+\`\`\`
 
 ### 8. اختبار الاتصال
 
-```bash
+\`\`\`bash
 # اختبر الخادم
 curl -k https://webhook.alazab.com/healthz
 
 # يجب أن تحصل على استجابة JSON مع حالة ok
-```
+\`\`\`
 
 ## تكوين WhatsApp API
 
@@ -157,21 +157,21 @@ curl -k https://webhook.alazab.com/healthz
 ## المراقبة والصيانة
 
 ### عرض السجلات:
-```bash
+\`\`\`bash
 pm2 logs whatsapp-webhook
 
 # أو مراقبة مباشرة
 pm2 monit
-```
+\`\`\`
 
 ### التحديثات:
-```bash
+\`\`\`bash
 cd /var/www/whatsapp-webhook
 git pull
 npm install
 cd client && npm run build && cd ..
 pm2 restart whatsapp-webhook
-```
+\`\`\`
 
 ### استكشاف الأخطاء:
 
@@ -190,31 +190,31 @@ pm2 restart whatsapp-webhook
 - استخدم متغيرات البيئة ولا تضع المفاتيح في الكود
 - فعّل Rate Limiting على الـ API endpoints
 - احتفظ بـ SSL certificates محدثة (استخدم certbot auto-renew)
-```
+\`\`\`
 
 ## استكشاف المشاكل الشائعة
 
 ### "Port already in use"
-```bash
+\`\`\`bash
 # العثور على العملية التي تستخدم المنفذ
 lsof -i :8005
 # أو إنهاء PM2
 pm2 delete whatsapp-webhook
-```
+\`\`\`
 
 ### "Connection refused"
-```bash
+\`\`\`bash
 # تحقق من Nginx
 sudo systemctl restart nginx
 sudo systemctl status nginx
 
 # تحقق من Node app
 pm2 logs whatsapp-webhook
-```
+\`\`\`
 
 ### "SSL Certificate Error"
-```bash
+\`\`\`bash
 # تجديد الشهادة
 sudo certbot renew --force-renewal
 sudo systemctl restart nginx
-```
+\`\`\`

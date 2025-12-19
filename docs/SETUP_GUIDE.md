@@ -47,19 +47,19 @@ WhatsApp يوفر رقم تجريبي للاختبار:
 #### للتطوير المحلي (باستخدام ngrok):
 
 1. ثبت ngrok:
-```bash
+\`\`\`bash
 npm install -g ngrok
-```
+\`\`\`
 
 2. شغّل التطبيق:
-```bash
+\`\`\`bash
 npm run dev
-```
+\`\`\`
 
 3. في terminal جديد، شغّل ngrok:
-```bash
+\`\`\`bash
 ngrok http 3000
-```
+\`\`\`
 
 4. انسخ الـ HTTPS URL من ngrok (مثل: `https://xxxx-xx-xx-xx-xx.ngrok.io`)
 
@@ -75,9 +75,9 @@ ngrok http 3000
 #### للإنتاج:
 
 استخدم domain الحقيقي الخاص بك:
-```
+\`\`\`
 https://yourdomain.com/api/webhook
-```
+\`\`\`
 
 ### 6. اختبار الإعداد
 
