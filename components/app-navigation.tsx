@@ -5,26 +5,20 @@ import { usePathname } from "next/navigation"
 
 export default function AppNavigation() {
   const pathname = usePathname()
-
   const isActive = (path: string) => pathname === path
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border/40 bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 transition-transform hover:scale-105">
-          <Image src="/logo.svg" alt="Logo" width={40} height={40} className="rounded-lg" />
-          <div>
-            <h1 className="text-xl font-bold text-foreground">WhatsApp Hub</h1>
-            <p className="text-xs text-muted-foreground">إدارة متكاملة للخدمات</p>
-          </div>
+    <aside className="fixed right-0 top-0 h-screen w-56 bg-card border-l border-border/40 flex flex-col z-40">
+      <div className="flex flex-col items-center py-8 gap-4">
+        <Link href="/" className="flex flex-col items-center gap-2 mb-6 transition-transform hover:scale-105">
+          <Image src="/logo.svg" alt="Logo" width={48} height={48} className="rounded-lg" />
+          <h1 className="text-lg font-bold text-foreground">WhatsApp Hub</h1>
+          <p className="text-xs text-muted-foreground">إدارة متكاملة للخدمات</p>
         </Link>
-
-        {/* Navigation Links */}
-        <div className="flex items-center gap-2">
+        <nav className="flex flex-col gap-2 w-full px-4">
           <Link
             href="/"
-            className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${
+            className={`rounded-lg px-4 py-2 text-sm font-medium transition-all text-right ${
               isActive("/")
                 ? "bg-primary text-primary-foreground shadow-lg"
                 : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
@@ -34,7 +28,7 @@ export default function AppNavigation() {
           </Link>
           <Link
             href="/control"
-            className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${
+            className={`rounded-lg px-4 py-2 text-sm font-medium transition-all text-right ${
               isActive("/control")
                 ? "bg-primary text-primary-foreground shadow-lg"
                 : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
@@ -44,7 +38,7 @@ export default function AppNavigation() {
           </Link>
           <Link
             href="/dashboard"
-            className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${
+            className={`rounded-lg px-4 py-2 text-sm font-medium transition-all text-right ${
               isActive("/dashboard")
                 ? "bg-primary text-primary-foreground shadow-lg"
                 : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
@@ -53,8 +47,28 @@ export default function AppNavigation() {
             المراجعة
           </Link>
           <Link
+            href="/media"
+            className={`rounded-lg px-4 py-2 text-sm font-medium transition-all text-right ${
+              isActive("/media")
+                ? "bg-primary text-primary-foreground shadow-lg"
+                : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+            }`}
+          >
+            مكتبة الوسائط
+          </Link>
+          <Link
+            href="/chat"
+            className={`rounded-lg px-4 py-2 text-sm font-medium transition-all text-right ${
+              isActive("/chat")
+                ? "bg-primary text-primary-foreground shadow-lg"
+                : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+            }`}
+          >
+            الدردشة الذكية
+          </Link>
+          <Link
             href="/ai-training"
-            className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
+            className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all text-right ${
               isActive("/ai-training")
                 ? "bg-gradient-to-r from-accent to-accent/80 text-accent-foreground shadow-lg"
                 : "border border-accent/50 text-accent hover:bg-accent/10"
@@ -63,8 +77,8 @@ export default function AppNavigation() {
             <span>🤖</span>
             <span>تدريب AI</span>
           </Link>
-        </div>
+        </nav>
       </div>
-    </nav>
+    </aside>
   )
 }
