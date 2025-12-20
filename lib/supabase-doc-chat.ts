@@ -406,7 +406,7 @@ export class SupabaseDocChat {
   /**
    * إنشاء prompt السياق
    */
-  private createContextPrompt(project: any, relevantContent: any[], question: string): string {
+  private async createContextPrompt(project: any, relevantContent: any[], question: string): Promise<string> {
     let prompt = `المشروع: ${project.project_name}\n`;
     prompt += `الوصف: ${project.project_description || 'لا يوجد وصف'}\n`;
     prompt += `المسار: ${project.bucket_path}\n\n`;
