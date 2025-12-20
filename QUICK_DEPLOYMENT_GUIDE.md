@@ -7,7 +7,7 @@
 
 ### 1. تحضير السيرفر
 
-```bash
+\`\`\`bash
 # تحديث النظام
 sudo apt update && sudo apt upgrade -y
 
@@ -18,11 +18,11 @@ sudo apt install -y nodejs
 # تثبيت PM2 و Nginx و Certbot
 sudo npm install -g pm2
 sudo apt install -y nginx certbot python3-certbot-nginx
-```
+\`\`\`
 
 ### 2. رفع الكود
 
-```bash
+\`\`\`bash
 # إنشاء المجلد
 sudo mkdir -p /var/www/whatsapp-hub
 sudo chown -R $USER:$USER /var/www/whatsapp-hub
@@ -35,11 +35,11 @@ git clone <your-repo> .
 # طريقة 2: ZIP
 scp whatsapp-hub.zip user@server:/var/www/
 cd /var/www && unzip whatsapp-hub.zip -d whatsapp-hub
-```
+\`\`\`
 
 ### 3. إعداد Environment
 
-```bash
+\`\`\`bash
 cd /var/www/whatsapp-hub
 cp .env.production .env.local
 
@@ -47,40 +47,40 @@ cp .env.production .env.local
 nano .env.local
 # غير NEXT_PUBLIC_WEBHOOK_URL و NEXT_PUBLIC_APP_URL
 # إلى https://whatsapp.alazab.com
-```
+\`\`\`
 
 ### 4. بناء وتشغيل
 
-```bash
+\`\`\`bash
 npm install --production
 npm run build
 pm2 start ecosystem.config.js
 pm2 save
 pm2 startup
-```
+\`\`\`
 
 ### 5. إعداد Nginx
 
-```bash
+\`\`\`bash
 sudo cp nginx.conf /etc/nginx/sites-available/whatsapp.alazab.com
 sudo ln -s /etc/nginx/sites-available/whatsapp.alazab.com /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
-```
+\`\`\`
 
 ### 6. تفعيل SSL
 
-```bash
+\`\`\`bash
 sudo certbot --nginx -d whatsapp.alazab.com
-```
+\`\`\`
 
 ### 7. Firewall
 
-```bash
+\`\`\`bash
 sudo ufw allow OpenSSH
 sudo ufw allow 'Nginx Full'
 sudo ufw enable
-```
+\`\`\`
 
 ### 8. إعداد Webhook في Meta
 
@@ -93,7 +93,7 @@ sudo ufw enable
 
 ## الاختبار
 
-```bash
+\`\`\`bash
 # فحص التطبيق
 pm2 status
 curl https://whatsapp.alazab.com
@@ -103,28 +103,28 @@ curl "https://whatsapp.alazab.com/api/webhook?hub.mode=subscribe&hub.verify_toke
 
 # مراقبة Logs
 pm2 logs whatsapp-hub
-```
+\`\`\`
 
 ---
 
 ## التحديث السريع
 
-```bash
+\`\`\`bash
 cd /var/www/whatsapp-hub
 ./deploy-production.sh
-```
+\`\`\`
 
 ---
 
 ## أوامر مهمة
 
-```bash
+\`\`\`bash
 pm2 status          # الحالة
 pm2 logs            # Logs
 pm2 restart all     # إعادة التشغيل
 pm2 monit           # المراقبة
 sudo systemctl reload nginx  # إعادة تحميل Nginx
-```
+\`\`\`
 
 ---
 

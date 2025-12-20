@@ -9,8 +9,8 @@
     "start": "next start",
     "t": "node test/full-test.js",
     "td": "node test/deepseek-test.js",
-    "tw": "node test/webhook-test.js",
-    "tq": "node -e \"require('dotenv').config(); const {DeepSeekAgent} = require('./lib/deepseek-agent'); new DeepSeekAgent().testConnection()\""
+    "tq": "node -e \"require('dotenv').config(); const {DeepSeekAgent} = require('./lib/deepseek-agent'); new DeepSeekAgent().testConnection()\"",
+    "tw": "node test/webhook-test.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

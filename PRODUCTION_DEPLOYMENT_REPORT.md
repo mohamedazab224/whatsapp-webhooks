@@ -129,7 +129,7 @@
 
 ### المرحلة 1: إعداد السيرفر
 
-```bash
+\`\`\`bash
 # تحديث النظام
 sudo apt update && sudo apt upgrade -y
 
@@ -145,11 +145,11 @@ sudo apt install -y nginx
 
 # تثبيت Certbot
 sudo apt install -y certbot python3-certbot-nginx
-```
+\`\`\`
 
 ### المرحلة 2: رفع الكود
 
-```bash
+\`\`\`bash
 # إنشاء المجلد
 sudo mkdir -p /var/www/whatsapp-hub
 sudo chown -R $USER:$USER /var/www/whatsapp-hub
@@ -161,11 +161,11 @@ git clone <repository-url> .
 # أو استخدم ZIP
 scp whatsapp-hub.zip user@server:/var/www/
 unzip whatsapp-hub.zip -d whatsapp-hub
-```
+\`\`\`
 
 ### المرحلة 3: إعداد البيئة
 
-```bash
+\`\`\`bash
 cd /var/www/whatsapp-hub
 
 # نسخ ملف البيئة
@@ -173,7 +173,7 @@ cp .env.production .env.local
 
 # تعديل المتغيرات
 nano .env.local
-```
+\`\`\`
 
 تأكد من تعديل:
 - `NEXT_PUBLIC_WEBHOOK_URL=https://whatsapp.alazab.com`
@@ -182,7 +182,7 @@ nano .env.local
 
 ### المرحلة 4: البناء والتشغيل
 
-```bash
+\`\`\`bash
 # تثبيت التبعيات
 npm install --production
 
@@ -193,11 +193,11 @@ npm run build
 pm2 start ecosystem.config.js
 pm2 save
 pm2 startup
-```
+\`\`\`
 
 ### المرحلة 5: إعداد Nginx
 
-```bash
+\`\`\`bash
 # نسخ الإعدادات
 sudo cp nginx.conf /etc/nginx/sites-available/whatsapp.alazab.com
 
@@ -209,26 +209,26 @@ sudo nginx -t
 
 # إعادة التشغيل
 sudo systemctl restart nginx
-```
+\`\`\`
 
 ### المرحلة 6: تفعيل SSL
 
-```bash
+\`\`\`bash
 # الحصول على شهادة
 sudo certbot --nginx -d whatsapp.alazab.com
 
 # اختبار التجديد التلقائي
 sudo certbot renew --dry-run
-```
+\`\`\`
 
 ### المرحلة 7: Firewall
 
-```bash
+\`\`\`bash
 # تفعيل UFW
 sudo ufw allow OpenSSH
 sudo ufw allow 'Nginx Full'
 sudo ufw enable
-```
+\`\`\`
 
 ### المرحلة 8: إعداد Webhook في Meta
 
@@ -283,7 +283,7 @@ sudo ufw enable
 
 ### أوامر PM2 المهمة
 
-```bash
+\`\`\`bash
 # عرض الحالة
 pm2 status
 
@@ -299,11 +299,11 @@ pm2 restart whatsapp-hub
 
 # إعادة تحميل (zero-downtime)
 pm2 reload whatsapp-hub
-```
+\`\`\`
 
 ### مراقبة Nginx
 
-```bash
+\`\`\`bash
 # عرض الحالة
 sudo systemctl status nginx
 
@@ -312,11 +312,11 @@ sudo tail -f /var/log/nginx/whatsapp.alazab.com.access.log
 
 # عرض error logs
 sudo tail -f /var/log/nginx/whatsapp.alazab.com.error.log
-```
+\`\`\`
 
 ### مراقبة SSL
 
-```bash
+\`\`\`bash
 # التحقق من الشهادة
 sudo certbot certificates
 
@@ -325,11 +325,11 @@ sudo certbot renew --dry-run
 
 # عرض تاريخ انتهاء الشهادة
 openssl s_client -connect whatsapp.alazab.com:443 -servername whatsapp.alazab.com 2>/dev/null | openssl x509 -noout -dates
-```
+\`\`\`
 
 ### النسخ الاحتياطي
 
-```bash
+\`\`\`bash
 # نسخ احتياطي يدوي
 cd /var/www
 tar -czf whatsapp-hub-backup-$(date +%Y%m%d-%H%M).tar.gz whatsapp-hub/
@@ -337,7 +337,7 @@ tar -czf whatsapp-hub-backup-$(date +%Y%m%d-%H%M).tar.gz whatsapp-hub/
 # نسخ احتياطي تلقائي (Cron)
 # إضافة في crontab:
 0 2 * * * cd /var/www && tar -czf ~/backups/whatsapp-hub-$(date +\%Y\%m\%d).tar.gz whatsapp-hub/
-```
+\`\`\`
 
 ---
 
@@ -346,11 +346,11 @@ tar -czf whatsapp-hub-backup-$(date +%Y%m%d-%H%M).tar.gz whatsapp-hub/
 
 ### استخدام سكريبت النشر
 
-```bash
+\`\`\`bash
 cd /var/www/whatsapp-hub
 chmod +x deploy-production.sh
 ./deploy-production.sh
-```
+\`\`\`
 
 السكريبت سيقوم بـ:
 1. Pull latest code from Git
@@ -366,7 +366,7 @@ chmod +x deploy-production.sh
 
 ### التطبيق لا يعمل
 
-```bash
+\`\`\`bash
 # فحص PM2
 pm2 status
 pm2 logs whatsapp-hub --lines 50
@@ -377,7 +377,7 @@ sudo netstat -tulpn | grep 3000
 # إعادة التشغيل الكامل
 pm2 delete whatsapp-hub
 pm2 start ecosystem.config.js
-```
+\`\`\`
 
 ### Webhook لا يستقبل
 
@@ -386,14 +386,14 @@ pm2 start ecosystem.config.js
 3. تحقق من Verify Token
 4. تحقق من SSL certificate
 
-```bash
+\`\`\`bash
 # اختبار Webhook محلياً
 curl -X GET "https://whatsapp.alazab.com/api/webhook?hub.mode=subscribe&hub.verify_token=uberfix_webhook_secure_2024_token&hub.challenge=test"
-```
+\`\`\`
 
 ### مشاكل الأداء
 
-```bash
+\`\`\`bash
 # فحص استخدام الموارد
 pm2 monit
 
@@ -402,7 +402,7 @@ pm2 monit
 
 # إعادة تشغيل بالإعدادات الجديدة
 pm2 restart ecosystem.config.js --update-env
-```
+\`\`\`
 
 ---
 
