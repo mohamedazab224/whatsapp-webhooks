@@ -4,6 +4,7 @@ import { webhookRouter } from "@/lib/webhook-router"
 import { systemUsersManager } from "@/lib/system-users"
 import { azureOpenAIAgent } from "@/lib/azure-openai-agent"
 import { sendWhatsAppMessage } from "@/lib/whatsapp"
+import { supabaseMediaStorage } from "@/lib/supabase-media-storage"
 
 // GET - التحقق من Webhook
 export async function GET(request: NextRequest) {
@@ -32,6 +33,31 @@ export async function POST(request: NextRequest) {
     if (body.entry?.[0]?.changes?.[0]?.value?.messages) {
       const message = body.entry[0].changes[0].value.messages[0]
       const contact = body.entry[0].changes[0].value.contacts?.[0]
+
+      if (message.type === "image" || message.type === "video" || message.type === "document") {
+        try {
+          const mediaId = message.image?.id || message.video?.id || message.document?.id
+          const mimeType = message.image?.mime_type || message.video?.mime_type || message.document?.mime_type
+          const caption = message.image?.caption || message.video?.caption || message.document?.caption
+
+          if (mediaId && mimeType) {
+            console.log("[v0] Processing media file:", { mediaId, mimeType, caption })
+
+            // تحميل الملف من WhatsApp ورفعه إلى Supabase
+            const uploadedFile = await supabaseMediaStorage.downloadAndUploadWhatsAppMedia(
+              mediaId,
+              mimeType,
+              message.from,
+              message.id,
+              caption,
+            )
+
+            console.log("[v0] Media file uploaded to Supabase:", uploadedFile.fileUrl)
+          }
+        } catch (error) {
+          console.error("[v0] Error processing media file:", error)
+        }
+      }
 
       const webhookMessage = {
         id: message.id,
