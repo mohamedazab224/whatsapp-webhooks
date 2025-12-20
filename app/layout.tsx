@@ -38,9 +38,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={`font-sans antialiased`}>
+      <body className={`font-sans antialiased flex flex-row-reverse`}>
         <AppNavigation />
-        {children}
+        <main className="flex-1 min-h-screen bg-gradient-to-br from-background via-background to-muted">
+          {children}
+        </main>
         <Analytics />
       </body>
     </html>
