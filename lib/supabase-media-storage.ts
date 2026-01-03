@@ -1,4 +1,4 @@
-// نظام إدارة ملفات WhatsApp على Supabase Storage
+// نظام إدارة ملفات WhatsApp على Supabase Storage - Server-side only
 
 export interface MediaFile {
   id: string
@@ -13,7 +13,6 @@ export interface MediaFile {
   caption?: string
 }
 
-// تحديد نوع الملف من MIME type
 function getFileTypeFromMime(mimeType: string): MediaFile["fileType"] {
   if (mimeType.startsWith("image/")) return "img"
   if (mimeType.startsWith("video/")) return "video"
@@ -21,10 +20,9 @@ function getFileTypeFromMime(mimeType: string): MediaFile["fileType"] {
   if (mimeType.includes("spreadsheet") || mimeType.includes("excel")) return "xlsx"
   if (mimeType.includes("csv")) return "cvs"
   if (mimeType.includes("dwg") || mimeType.includes("dxf")) return "cad"
-  return "img" // default
+  return "img"
 }
 
-// تحديد امتداد الملف من MIME type
 function getFileExtension(mimeType: string, originalName?: string): string {
   if (originalName && originalName.includes(".")) {
     return originalName.split(".").pop() || "bin"
@@ -51,7 +49,6 @@ function getFileExtension(mimeType: string, originalName?: string): string {
 class SupabaseMediaStorage {
   private baseUrl = "https://zrrffsjbfkphridqyais.supabase.co/storage/v1/object/public/whatsapp-media"
   private supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://zrrffsjbfkphridqyais.supabase.co"
-  private supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY || ""
   private mediaFiles: MediaFile[] = []
 
   // رفع ملف إلى Supabase Storage
@@ -69,37 +66,27 @@ class SupabaseMediaStorage {
       const timestamp = Date.now()
       const fileName = `${timestamp}-${messageId}.${extension}`
       const filePath = `${fileType}/${fileName}`
-      const uploadUrl = `${this.supabaseUrl}/storage/v1/object/whatsapp-media/${filePath}`
 
-      // رفع الملف
-      const response = await fetch(uploadUrl, {
+      const uploadResponse = await fetch("/api/upload-media", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${this.supabaseKey}`,
-          "Content-Type": mimeType,
+          "Content-Type": "application/json",
         },
-        body: fileBuffer,
+        body: JSON.stringify({
+          fileBuffer: fileBuffer.toString("base64"),
+          mimeType,
+          fromNumber,
+          messageId,
+          originalFileName,
+          caption,
+        }),
       })
 
-      if (!response.ok) {
-        throw new Error(`Failed to upload file: ${response.statusText}`)
+      if (!uploadResponse.ok) {
+        throw new Error(`Failed to upload file: ${uploadResponse.statusText}`)
       }
 
-      const fileUrl = `${this.baseUrl}/${filePath}`
-
-      const mediaFile: MediaFile = {
-        id: `media-${timestamp}`,
-        fileName,
-        fileType,
-        fileUrl,
-        mimeType,
-        fileSize: fileBuffer.length,
-        uploadedAt: new Date().toISOString(),
-        fromNumber,
-        messageId,
-        caption,
-      }
-
+      const mediaFile = await uploadResponse.json()
       this.mediaFiles.push(mediaFile)
       return mediaFile
     } catch (error) {
