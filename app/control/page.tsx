@@ -15,8 +15,8 @@ export default function ControlPage() {
       <main className="container mx-auto px-4 py-8">
         {/* Page Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">لوحة التحكم</h1>
-          <p className="text-muted-foreground">إدارة شاملة لجميع خدمات WhatsApp API</p>
+          <h1 className="text-4xl font-bold text-foreground mb-4">لوحة التحكم</h1>
+          <p className="text-lg text-muted-foreground">إدارة شاملة لجميع خدمات WhatsApp API مع AI Agent ذكي</p>
         </div>
 
         <div className="space-y-6">
@@ -25,24 +25,39 @@ export default function ControlPage() {
 
           {/* Tabs */}
           <Tabs defaultValue="send" className="space-y-4">
-            <TabsList className="grid w-full grid-cols-5 h-auto">
-              <TabsTrigger value="send" className="gap-2">
+            <TabsList className="grid w-full grid-cols-5 h-auto bg-card border border-border">
+              <TabsTrigger
+                value="send"
+                className="gap-2 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+              >
                 <span>📤</span>
                 <span>إرسال رسالة</span>
               </TabsTrigger>
-              <TabsTrigger value="templates" className="gap-2">
+              <TabsTrigger
+                value="templates"
+                className="gap-2 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+              >
                 <span>📋</span>
                 <span>القوالب</span>
               </TabsTrigger>
-              <TabsTrigger value="ai" className="gap-2">
+              <TabsTrigger
+                value="ai"
+                className="gap-2 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+              >
                 <span>🤖</span>
                 <span>AI Agent</span>
               </TabsTrigger>
-              <TabsTrigger value="messages" className="gap-2">
+              <TabsTrigger
+                value="messages"
+                className="gap-2 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+              >
                 <span>💬</span>
                 <span>الرسائل</span>
               </TabsTrigger>
-              <TabsTrigger value="feedback" className="gap-2">
+              <TabsTrigger
+                value="feedback"
+                className="gap-2 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+              >
                 <span>⭐</span>
                 <span>الملاحظات</span>
               </TabsTrigger>

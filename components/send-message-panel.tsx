@@ -54,7 +54,6 @@ export default function SendMessagePanel() {
     newVariables[index] = value
     setTemplateVariables(newVariables)
 
-    // تحديث الرسالة بالمتغيرات الجديدة
     const template = templates.find((t) => t.id === selectedTemplate)
     if (template) {
       let updatedMessage = template.content
@@ -182,7 +181,7 @@ export default function SendMessagePanel() {
             rows={5}
           />
         </div>
-        <Button onClick={handleSend} disabled={loading} className="w-full">
+        <Button onClick={handleSend} disabled={loading} className="w-full bg-purple-600 hover:bg-purple-700">
           {loading ? "جاري الإرسال..." : "إرسال الرسالة"}
         </Button>
       </CardContent>
