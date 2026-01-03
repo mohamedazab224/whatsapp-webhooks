@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server"
-import { messageStore } from "@/lib/storage"
+import { fetchMessageStats } from "@/lib/kapso-client"
 
 export async function GET() {
-  const stats = messageStore.getStats()
+  const stats = await fetchMessageStats()
 
   return NextResponse.json({
     success: true,

@@ -10,13 +10,13 @@ import { Toaster } from "@/components/ui/toaster"
 
 export default function ControlPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
+    <div className="min-h-screen bg-gray-50">
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-4">لوحة التحكم</h1>
-          <p className="text-lg text-muted-foreground">إدارة شاملة لجميع خدمات WhatsApp API مع AI Agent ذكي</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">لوحة التحكم</h1>
+          <p className="text-lg text-gray-600">إدارة تطبيق WhatsApp Business | WhatsApp API</p>
         </div>
 
         <div className="space-y-6">
@@ -25,41 +25,48 @@ export default function ControlPage() {
 
           {/* Tabs */}
           <Tabs defaultValue="send" className="space-y-4">
-            <TabsList className="grid w-full grid-cols-5 h-auto bg-card border border-border">
+            <TabsList className="grid w-full grid-cols-5 h-auto bg-white border border-gray-200 rounded-lg p-1 gap-1">
               <TabsTrigger
                 value="send"
-                className="gap-2 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+                className="gap-2 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-600 rounded"
               >
                 <span>📤</span>
-                <span>إرسال رسالة</span>
+                <span className="hidden sm:inline">إرسال رسالة</span>
               </TabsTrigger>
               <TabsTrigger
                 value="templates"
-                className="gap-2 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+                className="gap-2 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-600 rounded"
               >
                 <span>📋</span>
-                <span>القوالب</span>
+                <span className="hidden sm:inline">القوالب</span>
               </TabsTrigger>
               <TabsTrigger
                 value="ai"
-                className="gap-2 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+                className="gap-2 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-600 rounded"
               >
                 <span>🤖</span>
-                <span>AI Agent</span>
+                <span className="hidden sm:inline">AI Agent</span>
               </TabsTrigger>
               <TabsTrigger
                 value="messages"
-                className="gap-2 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+                className="gap-2 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-600 rounded"
               >
                 <span>💬</span>
-                <span>الرسائل</span>
+                <span className="hidden sm:inline">الرسائل</span>
               </TabsTrigger>
               <TabsTrigger
                 value="feedback"
-                className="gap-2 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+                className="gap-2 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-600 rounded"
               >
                 <span>⭐</span>
-                <span>الملاحظات</span>
+                <span className="hidden sm:inline">الملاحظات</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="quality"
+                className="gap-2 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-600 rounded"
+              >
+                <span>📊</span>
+                <span className="hidden sm:inline">الجودة</span>
               </TabsTrigger>
             </TabsList>
 
@@ -81,6 +88,12 @@ export default function ControlPage() {
 
             <TabsContent value="feedback" className="space-y-4">
               <FeedbackForm />
+            </TabsContent>
+
+            <TabsContent value="quality" className="space-y-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
+                <p className="text-gray-600">قريباً: معلومات الجودة والأداء</p>
+              </div>
             </TabsContent>
           </Tabs>
         </div>
